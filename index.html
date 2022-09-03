@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News Feed</title>
+    <!-- tailwind cdn -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- daisyUI -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="container mx-auto">
+      <div class="navbar bg-base-100">
+        <div class="flex-1">
+          <a class="font-semibold text-lg"
+            ><span class="bg-fuchsia-600 text-white p-1">News</span>Feed</a
+          >
+        </div>
+        <div class="flex-none">
+          <ul class="menu menu-horizontal p-0">
+            <li><a class="text-fuchsia-600">News</a></li>
+            <li><a> Blog</a></li>
+
+            <li>
+              <img class="w-16 rounded-full" src="images/person 1.png" />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="container mx-auto w-10/12">
+        <div id="news-catagories" class="flex"></div>
+      </section>
+    </main>
+    <script src="style.css"></script>
+    <script src="news.js"></script>
+  </body>
+</html>
