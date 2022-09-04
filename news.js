@@ -6,14 +6,13 @@ const loadCategories = () => {
 
 const displayCategories = (categories) => {
   const newsCategories = document.getElementById("news-catagories");
+
   for (const category of categories) {
     console.log(category);
     const categoryDiv = document.createElement("div");
-    // categoryDiv.classList.add("p-16, text-blue-400");
+
     categoryDiv.innerHTML = `
  <button class="p-6 hover:text-violet-400 active:bg-violet-700" onclick='loadCategoryNews("${category.category_id}")'>${category.category_name}</button>
- 
- 
  `;
     newsCategories.appendChild(categoryDiv);
   }
@@ -65,4 +64,4 @@ const loadNewsDetails = (newsId) => {
     .then((res) => res.json())
     .then((data) => console.log(data));
 };
-loadCategories();
+loadCategories("");
