@@ -19,7 +19,7 @@ const displayCategories = (categories) => {
 };
 
 const loadCategoryNews = (code) => {
-  const url = ` https://openapi.programming-hero.com/api/news/category/${code}`;
+  const url = `https://openapi.programming-hero.com/api/news/category/${code}`;
   console.log("get details", code);
   console.log(url);
   fetch(url)
@@ -46,9 +46,9 @@ const displayCategoryNews = (news) => {
     <img class="w-16 rounded-full" src="${news.author.img}">
     <p>${news.author.name}</p>
     <p>view: ${news.total_view}</p>
-    <button class="btn btn-primary" onclick="loadNewsDetails('${
+    <a class="btn  btn-primary" href="#my-modal-2"  onclick="loadNewsDetails('${
       news._id
-    }')">Details</button>
+    }')">Details</a>
     </div>
   </div>
 </div>
@@ -57,11 +57,23 @@ const displayCategoryNews = (news) => {
 const loadNewsDetails = (newsId) => {
   console.log(newsId);
 
-  const newsDetailsUrl = `"https://openapi.programming-hero.com/api/news/${newsId}"`;
+  const newsDetailsUrl = `https://openapi.programming-hero.com/api/news/${newsId}`;
   console.log(newsDetailsUrl);
 
   fetch(newsDetailsUrl)
     .then((res) => res.json())
-    .then((data) => console.log(data));
+    .then((data) => DisplayDetails(data.data[0]));
+};
+
+const DisplayDetails = (details) => {
+  console.log(details);
+
+  const newsTitle = document.getElementById("detail");
+  newsTitle.innerHTML = `
+ <h5> ${details.title}</h5>
+<p>${details.details}</p>
+<p>${details.rating.number}</p>
+<p>${details.rating.badge}</p>
+  `;
 };
 loadCategories("");
