@@ -9,9 +9,9 @@ const displayCategories = (categories) => {
   for (const category of categories) {
     console.log(category);
     const categoryDiv = document.createElement("div");
-    categoryDiv.classList.add("category");
+    // categoryDiv.classList.add("p-16, text-blue-400");
     categoryDiv.innerHTML = `
- <h3 onclick='loadCategoryNews("${category.category_id}")'>${category.category_name}</h3>
+ <button class="p-6 hover:text-violet-400 active:bg-violet-700" onclick='loadCategoryNews("${category.category_id}")'>${category.category_name}</button>
  
  
  `;
@@ -21,8 +21,8 @@ const displayCategories = (categories) => {
 
 const loadCategoryNews = (code) => {
   const url = ` https://openapi.programming-hero.com/api/news/category/${code}`;
-  //   console.log("get details", code);
-  //   console.log(url);
+  console.log("get details", code);
+  console.log(url);
   fetch(url)
     .then((res) => res.json())
     .then((data) => displayCategoryNews(data.data[0]));
@@ -32,7 +32,6 @@ const displayCategoryNews = (news) => {
   console.log(news);
   const categoryNews = document.getElementById("category-news");
 
-  //   const categoryNewsDiv = document.createElement("div");
   categoryNews.innerHTML = `
   
   <div class="card card-compact w-96 bg-base-100 shadow-xl">
@@ -47,12 +46,23 @@ const displayCategoryNews = (news) => {
     <div class="card-actions justify-around">
     <img class="w-16 rounded-full" src="${news.author.img}">
     <p>${news.author.name}</p>
-    <p>${news.rating.number}</p>
-    <button class="btn btn-primary">Details</button>
+    <p>view: ${news.total_view}</p>
+    <button class="btn btn-primary" onclick="loadNewsDetails('${
+      news._id
+    }')">Details</button>
     </div>
   </div>
 </div>
     `;
 };
+const loadNewsDetails = (newsId) => {
+  console.log(newsId);
 
+  const newsDetailsUrl = `"https://openapi.programming-hero.com/api/news/${newsId}"`;
+  console.log(newsDetailsUrl);
+
+  fetch(newsDetailsUrl)
+    .then((res) => res.json())
+    .then((data) => console.log(data));
+};
 loadCategories();
